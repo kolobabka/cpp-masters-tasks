@@ -3,12 +3,12 @@
 ## Build system
 
 ```
-$ cmake -S . -B  build -DCMAKE_BUILD_TYPE=Release
-$ cmake --build build
+$ conan install .
+$ cmake -S . -B build/Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=build/Release/generators/conan_toolchain.cmake
 ```
 
 ## Launch
 ```
-$ ./build/cram input_file [--dump-ast]
+no launch. Just pain.
 ```
 
