@@ -70,11 +70,9 @@ namespace AST {
 
     public:
         VarNode (const std::string &name, yy::location loc)
-            : Node (loc), name_ (name)
-        {
-        }
+            : Node (loc), name_ (name) {}
 
-        auto accept(Visitor &v) -> decltype (v.visit(this)) override{
+        auto accept(Visitor &v) -> decltype (v.visit(this)) override {
             return v.visit(this);
         }
 
@@ -88,9 +86,7 @@ namespace AST {
     class DummyNode final : public Node { // TODO
     public:
         DummyNode (yy::location loc = yy::location{})
-            : Node (loc)
-        {
-        }
+            : Node (loc) {}
 
         auto accept(Visitor &v) -> decltype (v.visit(this)) override {
             return v.visit(this);
@@ -104,7 +100,7 @@ namespace AST {
         ArrayNode (yy::location loc = yy::location{})
             : Node (loc) {}
 
-        auto accept(Visitor &v) -> decltype (v.visit(this)) override{
+        auto accept(Visitor &v) -> decltype (v.visit(this)) override {
             return v.visit(this);
         }
 
@@ -120,21 +116,17 @@ namespace AST {
 
     public:
         enum class OperType {
-            ADD,  // a + b
-            SUB,  // a - b
-
-            ASSIGN,  // a = b
-
-            INPUT,   // a = ?
-            PRINT,  // print (a)
+            ADD,
+            SUB,
+            ASSIGN,
+            INPUT,  
+            PRINT
         };
 
         OperNode (const OperType opType, yy::location loc)
-            : Node (loc), opType_ (opType)
-        {
-        }
+            : Node (loc), opType_ (opType) {}
 
-        auto accept(Visitor &v) -> decltype (v.visit(this)) override{
+        auto accept(Visitor &v) -> decltype (v.visit(this)) override {
             return v.visit(this);
         }
 

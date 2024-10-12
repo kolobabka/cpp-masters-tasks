@@ -8,11 +8,8 @@
 #include "backend.hpp"
 
 int main(int argc, char *argv[]) try {
-    std::unique_ptr<Tree::NAryTree<AST::Node>> ast;
-    {
-        Frontend front{argc, argv};
-        ast = front.build_ast ();
-    }
+    Frontend front{argc, argv};
+    auto ast = front.build_ast ();
     Interpreter I;
     I.run(*ast);
 
