@@ -124,7 +124,7 @@
 
 translationStart            :   statementHandler                {
                                                                     AST::ScopeNode* globalScope = new AST::ScopeNode (@1);
-                                                                    if ($1) {
+                                                                    if ($1) { // transform_if
                                                                         for (auto curStmtNode: *($1))             
                                                                         {   
                                                                             if (!curStmtNode) {
@@ -133,7 +133,7 @@ translationStart            :   statementHandler                {
                                                                             globalScope->push_back (curStmtNode);
                                                                         }
                         
-                                                                        delete $1;
+                                                                        delete $1; // bruh
                                                                     }
                                                                     tree.setRoot (globalScope);
                                                                
@@ -156,8 +156,8 @@ statementHandler            :   statement SEMICOLON              {
                                                                             for (auto v: *($3))
                                                                                 delete v;
                                                                         }
-                                                                        delete $1;
-                                                                        delete $3;
+                                                                        delete $1; // bruh
+                                                                        delete $3; // bruh
                                                                     }
                                                                 };
 

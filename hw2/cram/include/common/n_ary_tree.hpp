@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stack>
 #include <vector>
+#include <algorithm>
 
 namespace Tree {
 
@@ -15,25 +16,19 @@ template <typename T> class NAryTree final {
     curNode->nodeDump(out);
     out << "\"]\n";
 
-    for (auto it = curNode->begin(); it != curNode->end(); ++it) {
-      T *curChild = *it;
+    for (auto *curChild : *curNode)
       if (curChild)
         PrintNodeIntoGraphviz(curChild, out);
-    }
   }
 
   void BuildConnectionsInGraphviz(T *curNode, std::ostream &out) const {
-    for (auto it = curNode->begin(); it != curNode->end(); ++it) {
-      T *curChild = *it;
+    for (auto *curChild : *curNode)
       if (curChild)
         out << "\"" << curNode << "\" -> \"" << curChild << "\"\n";
-    }
 
-    for (auto it = curNode->begin(); it != curNode->end(); ++it) {
-      T *curChild = *it;
+    for (auto *curChild : *curNode)
       if (curChild)
         BuildConnectionsInGraphviz(curChild, out);
-    }
   }
 
 public:
@@ -62,8 +57,9 @@ public:
       }
     }
 
-    for (int i = queueOnDelete.size() - 1; i >= 0; --i)
-      delete queueOnDelete[i];
+    std::reverse(queueOnDelete.begin(), queueOnDelete.end());
+    for (auto *Node : queueOnDelete)
+      delete Node;
   }
 
   NAryTree(const NAryTree &) = delete;
